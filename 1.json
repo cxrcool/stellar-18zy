@@ -1,0 +1,11 @@
+[
+    {"title":"花椒资源","api":"https://apihjzy.com/api.php/Seacms/vod/","datatype":"xml","search":true},
+    {"title":"花椒备用1","api":"https://cj.apihjzy.com/inc/api.php","datatype":"xml","search":true},
+    {"title":"花椒备用2","api":"https://cdn.apihjzy.com/api.php/Seacms/vod/","datatype":"xml","search":true},
+    {"title":"乐播资源","api":"https://lbapi9.com/api.php/provide/vod/at/xml/","datatype":"xml","search":true},
+    {"title":"76资源","api":"http://m.7777688.com/inc/api.php","datatype":"xml","search":true},
+    {"title":"鲨鱼资源","api":"https://shayuapi.com/api.php/Seacms/vod/","datatype":"xml","search":true},
+    {"title":"大地资源","api":"https://dadiapi.com/api.php","datatype":"xml","search":true},
+    {"title":"环亚资源","api":"http://wmcj8.com/inc/sapi.php","datatype":"xml","search":true},
+    {"title":"乐鱼资源","api":"https://www.leyuzyapi.com/inc/seacmsapi.php","datatype":"xml","search":false}
+]
