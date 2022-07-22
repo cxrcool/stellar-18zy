@@ -98,6 +98,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                     {'type':'edit','name':'search_edit','label':'搜索','width':0.4},
                     {'type':'button','name':'搜索当前站','@click':'onSearch','width':100},
                     {'type':'button','name':'搜索所有站','@click':'onSearchAll','width':100},
+                    {'type':'link','value':'https://github.com/cxrcool/stellar-18zy','name':'留言反馈','width':100},
                 ],
                 'width':1.0,
                 'height':30
