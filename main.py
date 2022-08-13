@@ -469,7 +469,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         controls = [
             {'type':'space','height':5},
             {'group':[
-                    {'type':'image','name':'mediapicture', 'value':mediainfo['pic'],'width':0.25},
+                    {'type':'image','name':'mediapicture', 'value':mediainfo['pic'],'width':0.5},
                     {'group':[
                             {'type':'label','name':'medianame','textColor':'#ff7f00','fontSize':15,'value':mediainfo['medianame'],'height':40},
                             {'type':'label','name':'actor','textColor':'#555500','value':mediainfo['actor'],'height':0.3},
