@@ -11,5 +11,6 @@
     {"title":"鲨鱼资源","api":"https://shayuapi.com/api.php/provide/vod/at/xml/","datatype":"xml","search":true},
     {"title":"丝袜资源","api":"https://siwazyw.cc/api.php/provide/vod/at/xml/","datatype":"xml","search":true},
     {"title":"秀色资源","api":"https://api.xiuseapi.com/api.php/provide/vod/from/xiuse/at/xml/","datatype":"xml","search":true},
-    {"title":"色窝资源","api":"https://sewozyapi.com/api.php/provide/vod/at/xml/","datatype":"xml","search":false}
+    {"title":"色窝资源","api":"https://sewozyapi.com/api.php/provide/vod/at/xml/","datatype":"xml","search":false},
+    {"title":"花魁资源","api":"https://caiji.huakuiapi.com/inc/apijson_vod.php","datatype":"xml","search":true},
 ]
