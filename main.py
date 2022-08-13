@@ -67,7 +67,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
     
     def show(self):
         controls = self.makeLayout()
-        self.doModal('main',930,650,'',controls)        
+        self.doModal('main',1000,680,'',controls)        
     
     def makeLayout(self):
         zywz_layout = [
