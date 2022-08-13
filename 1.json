@@ -14,8 +14,9 @@
     {"title":"花魁资源","api":"https://caiji.huakuiapi.com/inc/api.php","datatype":"xml","search":true},
     {"title":"淫窝资源","api":"https://api.yinwoapi.com/api.php/provide/vod/at/xml","datatype":"xml","search":true},
     {"title":"花魁8资源","api":"https://huakuizy8.com/inc/api.php","datatype":"xml","search":true},
-    {"title":"撸死你资源站","api":"http://cjmygzy.com/inc/sapi.php","datatype":"xml","search":true},
-    {"title":"香蕉资源(佳丽)","api":"https://xjzyapi.com/api.php/provide/vod/at/xml/","datatype":"xml","search":true},
+    {"title":"撸死你资源","api":"http://cjmygzy.com/inc/sapi.php","datatype":"xml","search":true},
+    {"title":"香蕉资源","api":"https://xjzyapi.com/api.php/provide/vod/at/xml/","datatype":"xml","search":true},
+    {"title":"佳丽资源","api":"https://jializyzapi.com/api.php/provide/vod/at/xml/","datatype":"xml","search":true},
     {"title":"老司鸡资源","api":"https://www.lsjapi.com/home/cjapi/asd2g8/mc10/vod/at/xml","datatype":"xml","search":true},
     {"title":"色猫资源","api":"https://api.maozyapi.com/inc/api.php","datatype":"xml","search":true},
     {"title":"精工厂资源","api":"https://jgczyapi.com/home/cjapi/kld2/mc/vod/xml","datatype":"xml","search":true}
