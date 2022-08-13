@@ -414,7 +414,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                                         jjinfo = jj.split('$')
                                         urllist.append({'title':jjinfo[0],'url':jjinfo[1]})
                                     sourcelist.append({'flag':playfromlist[i],'medias':urllist})
-                            mediainfo = {'medianame':info['vod_name'],'pic':info['vod_pic'],'actor':'演员:' + info['vod_actor'].strip(),'content':'简介:' + info['vod_content'].strip(),'source':sourcelist}
+                            mediainfo = {'medianame':info['vod_name'],'pic':info['vod_pic'],'time':'时间:' + info['vod_time'].strip(),'content':'简介:' + info['vod_content'].strip(),'source':sourcelist}
                             self.createMediaFrame(mediainfo)
                             return
                 else:
@@ -426,8 +426,8 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                         name = nameinfo.text
                         picinfo = info.select('pic')[0]
                         pic = picinfo.text
-                        actorinfo = info.select('actor')[0]
-                        actor = '演员:' + actorinfo.text.strip()
+                        timeinfo = info.select('time')[0]
+                        time = '时间:' + timeinfo.text.strip()
                         desinfo = info.select('des')[0]
                         des = '简介:' + desinfo.text.strip()
                         dds = info.select('dl > dd')
@@ -447,7 +447,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                                         m3u8list.append({'title':urlinfo[0],'url':urlinfo[1]})
                                     n = n + 1
                                 sourcelist.append({'flag':ddflag,'medias':m3u8list})
-                        mediainfo = {'medianame':name,'pic':pic,'actor':actor,'content':des,'source':sourcelist}
+                        mediainfo = {'medianame':name,'pic':pic,'time':time,'content':des,'source':sourcelist}
                         self.createMediaFrame(mediainfo)
                         return
         except:
@@ -472,7 +472,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                     {'type':'image','name':'mediapicture', 'value':mediainfo['pic'],'width':0.5},
                     {'group':[
                             {'type':'label','name':'medianame','textColor':'#ff7f00','fontSize':15,'value':mediainfo['medianame'],'height':40},
-                            {'type':'label','name':'actor','textColor':'#555500','value':mediainfo['actor'],'height':0.3},
+                            {'type':'label','name':'time','textColor':'#555500','value':mediainfo['time'],'height':0.3},
                             {'type':'label','name':'info','textColor':'#005555','value':mediainfo['content'],'height':0.7}
                         ],
                         'dir':'vertical',
