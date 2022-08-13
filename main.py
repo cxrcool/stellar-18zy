@@ -108,7 +108,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
             {'type':'space','height':5},
             {'type':'grid','name':'mediaclassgrid','itemlayout':mediaclass_layout,'value':self.mediaclass,'itemheight':30,'itemwidth':80,'height':80},
             {'type':'space','height':5},
-            {'type':'grid','name':'mediagrid','itemlayout':mediagrid_layout,'value':self.medias,'separator':True,'itemheight':200,'itemwidth':320},
+            {'type':'grid','name':'mediagrid','itemlayout':mediagrid_layout,'value':self.medias,'separator':True,'itemheight':220,'itemwidth':320},
             {'group':
                 [
                     {'type':'space'},
