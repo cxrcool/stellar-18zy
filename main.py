@@ -108,9 +108,10 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
             {'type':'space','height':5},
             {
                 'group':[
-                    {'type':'edit','name':'search_edit','label':'搜索','width':0.4},
+                    {'type':'edit','name':'search_edit','width':0.4},
                     {'type':'button','name':'搜索当前站','@click':'onSearch','width':100},
                     {'type':'button','name':'搜索所有站','@click':'onSearchAll','width':100},
+                    {'type': 'link','value': 'https://github.com/cxrcool/stellar-18zy/issues','name':'问题反馈'},
                 ],
                 'width':1.0,
                 'height':30
@@ -166,7 +167,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         self.player.updateControlValue('main','mediaclassgrid',self.mediaclass)
         url = self.apiurl + '?ac=list'
         try:
-            res = requests.get(url,timeout = 10,verify=False)
+            res = requests.get(url,timeout = 15,verify=False)
             if res.status_code == 200:
                 if self.apitype == 'json':
                     jsondata = json.loads(res.text, strict = False)
@@ -184,10 +185,10 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                         self.getPageInfoXML(bs)
             else:
                 if showerror:
-                    self.player and self.player.toast('main','请求失败')
+                    self.player and self.player.toast('main','请求失败重试')
         except:
             if showerror:
-                self.player and self.player.toast('main','请求失败')
+                self.player and self.player.toast('main','请求失败重试')
         self.player.updateControlValue('main','mediaclassgrid',self.mediaclass)
         
     def getMediaList(self,showerror):
@@ -204,7 +205,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         if self.pg != '':
             url = url + self.pg
         try:
-            res = requests.get(url,timeout = 10,verify=False)
+            res = requests.get(url,timeout = 15,verify=False)
             if res.status_code == 200:
                 if self.apitype == 'json':
                     jsondata = json.loads(res.text, strict = False)
@@ -229,10 +230,10 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                     self.getPageInfoXML(bs)
             else:
                 if showerror:
-                    self.player and self.player.toast('main','请求失败')
+                    self.player and self.player.toast('main','请求失败重试')
         except:
             if showerror:
-                self.player and self.player.toast('main','请求失败')
+                self.player and self.player.toast('main','请求失败重试')
         self.player.updateControlValue('main','mediagrid',self.medias)
     
     def on_class_click(self, page, listControl, item, itemControl):
@@ -336,7 +337,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         url = zyzapiurl + '?ac=videolist&wd=' + wd + '&pg=' + str(pageindex)
         print(url)
         try:
-            res = requests.get(url,timeout = 10,verify=False)
+            res = requests.get(url,timeout = 15,verify=False)
             if res.status_code == 200:
                 if zyzapitype == "json":
                     jsondata = json.loads(res.text, strict = False)
@@ -404,7 +405,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         
     def onGetMediaPage(self,url,apitype):
         try:
-            res = requests.get(url,timeout = 10,verify=False)
+            res = requests.get(url,timeout = 15,verify=False)
             if res.status_code == 200:
                 if apitype == 'json':
                     jsondata = json.loads(res.text, strict = False)
@@ -441,7 +442,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                                 if len(urllist) > 0:
                                     sourcelist.append({'flag':playfromlist[i],'medias':urllist})
                             if len(sourcelist) > 0:
-                                mediainfo = {'medianame':info['vod_name'],'pic':info['vod_pic'],'actor':'演员:' + info['vod_actor'].strip(),'content':'简介:' + info['vod_content'].strip(),'source':sourcelist}
+                                mediainfo = {'medianame':info['vod_name'],'pic':info['vod_pic'],'class':'类型:' + info['vod_class'].strip(),'time':'时间:' + info['vod_time'].strip(),'source':sourcelist}
                                 self.createMediaFrame(mediainfo)
                                 return
                 else:
@@ -453,10 +454,10 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                         name = nameinfo.text
                         picinfo = info.select('pic')[0]
                         pic = picinfo.text
-                        actorinfo = info.select('actor')[0]
-                        actor = '演员:' + actorinfo.text.strip()
+                        classinfo = info.select('class')[0]
+                        class = '类型:' + classinfo.text.strip()
                         desinfo = info.select('des')[0]
-                        des = '简介:' + desinfo.text.strip()
+                        time = '时间:' + timeinfo.text.strip()
                         dds = info.select('dl > dd')
                         sourcelist = []
                         for dd in dds:
@@ -474,7 +475,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                                         m3u8list.append({'title':urlinfo[0],'url':urlinfo[1]})
                                     n = n + 1
                                 sourcelist.append({'flag':ddflag,'medias':m3u8list})
-                        mediainfo = {'medianame':name,'pic':pic,'actor':actor,'content':des,'source':sourcelist}
+                        mediainfo = {'medianame':name,'pic':pic,'class':class,'time':time,'source':sourcelist}
                         self.createMediaFrame(mediainfo)
                         return
         except:
@@ -499,8 +500,8 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                     {'type':'image','name':'mediapicture', 'value':mediainfo['pic'],'width':0.25},
                     {'group':[
                             {'type':'label','name':'medianame','textColor':'#ff7f00','fontSize':15,'value':mediainfo['medianame'],'height':40},
-                            {'type':'label','name':'actor','textColor':'#555500','value':mediainfo['actor'],'height':0.3},
-                            {'type':'label','name':'info','textColor':'#005555','value':mediainfo['content'],'height':0.7}
+                            {'type':'label','name':'class','textColor':'#555500','value':mediainfo['class'],'height':0.5},
+                            {'type':'label','name':'info','textColor':'#005555','value':mediainfo['time'],'height':0.5}
                         ],
                         'dir':'vertical',
                         'width':0.75
