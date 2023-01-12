@@ -1,18 +1,16 @@
 [
     {"title":"18资源","api":"https://18.cxr.cool/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"乐播资源","api":"https://lbapi9.com/api.php/provide/vod/","datatype":"json","search":true},
-    {"title":"环亚资源","api":"http://wmcj8.com/inc/sapi.php","datatype":"json","search":true},
+    {"title":"环亚资源","api":"http://wmcj8.com/inc/sapi.php","datatype":"xml","search":true},
     {"title":"大MM资源","api":"https://www.dmmapi.com/home/cjapi/asd2c7/mc/vod/xml","datatype":"xml","search":true},
-    {"title":"老鸭资源","api":"https://api.apilyzy.com/api.php/provide/vod/at/xml","datatype":"xml","search":true},
-    {"title":"鲨鱼资源","api":"https://shayuapi.com/api.php/provide/vod/at/json/","datatype":"json","search":true},
-    {"title":"丝袜资源","api":"https://siwazyw.cc/api.php/provide/vod/","datatype":"json","search":true},
+    {"title":"鲨鱼资源","api":"https://shayuapi.com/api.php/provide/vod/at/xml","datatype":"xml","search":true},
+    {"title":"丝袜资源","api":"https://siwazyw.cc/api.php/provide/vod/at/xml","datatype":"xml","search":true},
     {"title":"秀色资源","api":"https://api.xiuseapi.com/api.php/provide/vod/","datatype":"json","search":true},
-    {"title":"香蕉资源","api":"https://xjzyapi.com/api.php/provide/vod/","datatype":"json","search":true},
-    {"title":"老司鸡资源","api":"https://www.lsjapi.com/home/cjapi/asd2g8/mc10/vod/at/xml","datatype":"xml","search":true},
+    {"title":"香蕉资源","api":"https://xjzyapi.com/api.php/provide/vod/at/xml","datatype":"xml","search":true},
     {"title":"155资源","api":"https://www.155api.com/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"玉兔资源","api":"https://apiyutu.com/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"葡萄资源","api":"https://caiji.putaozy.net/inc/seacms.php","datatype":"xml","search":true},
-    {"title":"老司鸡资源","api":"https://laoyazy54.com/api.php/provide/vod/","datatype":"json","search":true},
+    {"title":"老鸭资源","api":"https://laoyazy54.com/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"滴滴资源","api":"https://api.ddapi.cc/api.php/provide/vod/at/xml","datatype":"xml","search":true},
-    {"title":"奥斯卡资源","api":"https://aosikazy.com/api.php/provide/vod/","datatype":"json","search":false}
+    {"title":"奥斯卡资源","api":"https://aosikazy.com/api.php/provide/vod/at/xml","datatype":"xml","search":false}
 ]
