@@ -42,7 +42,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         super().start()
         try:
             down_url = 'https://github.com/cxrcool/stellar-18zy/blob/7fcddf7f9067c2d2d35d1eb53757db9452617af2/1.json'
-            r = requests.get(down_url,timeout = 10,verify=False) 
+            r = requests.get(down_url,timeout = 15,verify=False) 
             result = r.status_code
             if result == 200:
                 with open('remote.json','wb') as f:
@@ -108,7 +108,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
             {'type':'space','height':5},
             {
                 'group':[
-                    {'type':'edit','name':'search_edit','width':0.4},
+                    {'type':'edit','name':'search_edit','label':'搜索','width':0.4},
                     {'type':'button','name':'搜索当前站','@click':'onSearch','width':100},
                     {'type':'button','name':'搜索所有站','@click':'onSearchAll','width':100},
                     {'type': 'link','value': 'https://github.com/cxrcool/stellar-18zy/issues','name':'问题反馈'},
@@ -456,7 +456,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                         pic = picinfo.text
                         classinfo = info.select('class')[0]
                         class = '类型:' + classinfo.text.strip()
-                        desinfo = info.select('des')[0]
+                        timeinfo = info.select('time')[0]
                         time = '时间:' + timeinfo.text.strip()
                         dds = info.select('dl > dd')
                         sourcelist = []
