@@ -40,14 +40,27 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
     
     def start(self):
         super().start()
-        path = os.path.split(os.path.realpath(__file__))[0]
-        for root, dirs, files in os.walk(path): 
-            for file in files:
-                filenames = os.path.splitext(file)
-                if os.path.splitext(file)[1] == '.json':  # 想要保存的文件格式
-                    self.resolveJson(path + os.path.sep + file)
+        try:
+            down_url = 'https://github.com/cxrcool/stellar-18zy/blob/7fcddf7f9067c2d2d35d1eb53757db9452617af2/1.json'
+            r = requests.get(down_url,timeout = 10,verify=False) 
+            result = r.status_code
+            if result == 200:
+                with open('remote.json','wb') as f:
+                    f.write(r.content)
+                    f.close()            
+            self.resolveJson('remote.json')
+        except Exception as r:
+            print('get remote source.json error %s' %r)
+        if len(self.spy) == 0:
+            path = os.path.split(os.path.realpath(__file__))[0]
+            for root, dirs, files in os.walk(path): 
+                for file in files:
+                    filenames = os.path.splitext(file)
+                    if os.path.splitext(file)[1] == '.json':  # 想要保存的文件格式
+                        self.resolveJson(path + os.path.sep + file)
         if len(self.spy) > 0:
             cat = self.spy[0]
+            print(cat)
             self.apiurl = cat['api']
             self.apitype = cat['datatype']
             self.getMediaType(False)
@@ -67,7 +80,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
     
     def show(self):
         controls = self.makeLayout()
-        self.doModal('main',1000,700,'',controls)        
+        self.doModal('main',800,700,'',controls)        
     
     def makeLayout(self):
         zywz_layout = [
@@ -98,17 +111,18 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                     {'type':'edit','name':'search_edit','label':'搜索','width':0.4},
                     {'type':'button','name':'搜索当前站','@click':'onSearch','width':100},
                     {'type':'button','name':'搜索所有站','@click':'onSearchAll','width':100},
-                    {'type':'link','value':'https://github.com/cxrcool/stellar-18zy','name':'留言反馈','width':100},
                 ],
                 'width':1.0,
                 'height':30
             },
             {'type':'space','height':10},
-            {'type':'grid','name':'zygrid','itemlayout':zywz_layout,'value':self.spy,'itemheight':30,'itemwidth':80,'height':70},
-            {'type':'space','height':5},
-            {'type':'grid','name':'mediaclassgrid','itemlayout':mediaclass_layout,'value':self.mediaclass,'itemheight':30,'itemwidth':80,'height':80},
-            {'type':'space','height':5},
-            {'type':'grid','name':'mediagrid','itemlayout':mediagrid_layout,'value':self.medias,'separator':True,'itemheight':220,'itemwidth':320},
+            {
+                'group':[
+                    {'type':'grid','name':'zygrid','itemlayout':zywz_layout,'value':self.spy,'itemheight':30,'itemwidth':80,'width':100},
+                    {'type':'grid','name':'mediaclassgrid','itemlayout':mediaclass_layout,'value':self.mediaclass,'itemheight':30,'itemwidth':60,'width':80},
+                    {'type':'grid','name':'mediagrid','itemlayout':mediagrid_layout,'value':self.medias,'separator':True,'itemheight':240,'itemwidth':150}
+                ]
+            },
             {'group':
                 [
                     {'type':'space'},
@@ -152,7 +166,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         self.player.updateControlValue('main','mediaclassgrid',self.mediaclass)
         url = self.apiurl + '?ac=list'
         try:
-            res = requests.get(url,timeout = 5,verify=False)
+            res = requests.get(url,timeout = 10,verify=False)
             if res.status_code == 200:
                 if self.apitype == 'json':
                     jsondata = json.loads(res.text, strict = False)
@@ -190,7 +204,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         if self.pg != '':
             url = url + self.pg
         try:
-            res = requests.get(url,timeout = 5,verify=False)
+            res = requests.get(url,timeout = 10,verify=False)
             if res.status_code == 200:
                 if self.apitype == 'json':
                     jsondata = json.loads(res.text, strict = False)
@@ -322,7 +336,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         url = zyzapiurl + '?ac=videolist&wd=' + wd + '&pg=' + str(pageindex)
         print(url)
         try:
-            res = requests.get(url,timeout = 5,verify=False)
+            res = requests.get(url,timeout = 10,verify=False)
             if res.status_code == 200:
                 if zyzapitype == "json":
                     jsondata = json.loads(res.text, strict = False)
@@ -390,7 +404,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         
     def onGetMediaPage(self,url,apitype):
         try:
-            res = requests.get(url,timeout = 5,verify=False)
+            res = requests.get(url,timeout = 10,verify=False)
             if res.status_code == 200:
                 if apitype == 'json':
                     jsondata = json.loads(res.text, strict = False)
@@ -406,17 +420,30 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
                             sourcelen = len(playfromlist)
                             sourcelist = []
                             for i in range(sourcelen):
-                                if playfromlist[i].find('m3u8') >= 0:
-                                    urllist = [] 
-                                    urlstr = playurllist[i]
-                                    jjlist = urlstr.split('#')
-                                    for jj in jjlist:
+                                urllist = [] 
+                                urlstr = playurllist[i]
+                                jjlist = urlstr.split('#')
+                                n = 0
+                                for jj in jjlist:
+                                    n = n + 1
+                                    if jj.strip() != '':
                                         jjinfo = jj.split('$')
-                                        urllist.append({'title':jjinfo[0],'url':jjinfo[1]})
+                                        js = ''
+                                        jsdz = ''
+                                        if len(jjinfo) == 1:
+                                            js = '第' + str(n) + '集'
+                                            jsdz = jjinfo[0]
+                                        elif len(jjinfo) == 2:
+                                            js = jjinfo[0]
+                                            jsdz = jjinfo[1]
+                                        if jsdz.find('.m3u8') > 0 or jsdz.find('.mp4') > 0:
+                                            urllist.append({'title':js,'url':jsdz})
+                                if len(urllist) > 0:
                                     sourcelist.append({'flag':playfromlist[i],'medias':urllist})
-                            mediainfo = {'medianame':info['vod_name'],'pic':info['vod_pic'],'actor':'演员:' + info['vod_actor'].strip(),'content':'简介:' + info['vod_content'].strip(),'source':sourcelist}
-                            self.createMediaFrame(mediainfo)
-                            return
+                            if len(sourcelist) > 0:
+                                mediainfo = {'medianame':info['vod_name'],'pic':info['vod_pic'],'actor':'演员:' + info['vod_actor'].strip(),'content':'简介:' + info['vod_content'].strip(),'source':sourcelist}
+                                self.createMediaFrame(mediainfo)
+                                return
                 else:
                     bs = bs4.BeautifulSoup(res.content.decode('UTF-8','ignore'),'html.parser')
                     selector = bs.select('rss > list > video')
@@ -469,7 +496,7 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         controls = [
             {'type':'space','height':5},
             {'group':[
-                    {'type':'image','name':'mediapicture', 'value':mediainfo['pic'],'width':0.5},
+                    {'type':'image','name':'mediapicture', 'value':mediainfo['pic'],'width':0.25},
                     {'group':[
                             {'type':'label','name':'medianame','textColor':'#ff7f00','fontSize':15,'value':mediainfo['medianame'],'height':40},
                             {'type':'label','name':'actor','textColor':'#555500','value':mediainfo['actor'],'height':0.3},
@@ -565,10 +592,14 @@ class yszfplugin(StellarPlayer.IStellarPlayerPlugin):
         if len(self.allmovidesdata[page]['actmovies']) > item:
             playurl = self.allmovidesdata[page]['actmovies'][item]['url']
             playname = page + ' ' + self.allmovidesdata[page]['actmovies'][item]['title']
-            try:
-                self.player.play(playurl, caption=playname)
-            except:
-                self.player.play(playurl)  
+            playlist = []
+            for xl in self.allmovidesdata[page]['allmovies']:
+                if len(xl['medias']) > item:
+                    playlist.append({'url':xl['medias'][item]['url']})
+                try:
+                    self.player.playMultiUrls(playlist,playname)
+                except:
+                    self.player.play(playurl, caption=playname) 
             
     def playMovieUrl(self,playpageurl):
         return
