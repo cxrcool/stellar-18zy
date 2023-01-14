@@ -1,5 +1,5 @@
 [
-    {"title":"18资源","api":"https://18.cxr.cool/api.php/provide/vod/","datatype":"json","search":true},
+    {"title":"18资源[官方]","api":"https://18.cxr.cool/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"乐播资源","api":"https://lbapi9.com/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"环亚资源","api":"http://wmcj8.com/inc/sapi.php","datatype":"xml","search":true},
     {"title":"大MM资源","api":"https://www.dmmapi.com/home/cjapi/asd2c7/mc/vod/xml","datatype":"xml","search":true},
