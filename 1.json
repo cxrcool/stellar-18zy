@@ -15,6 +15,5 @@
     {"title":"91md","api":"https://91md.me/api.php/provide/vod/from/mdm3u8/","datatype":"xml","search":true},
     {"title":"1","api":"https://xjjzyapi.com/home/cjapi/askl/mc/vod/xml","datatype":"xml","search":true},
     {"title":"2","api":"http://www.jializyzapi.com/api.php/provide/vod/","datatype":"xml","search":true},
-    {"title":"奥斯卡资源","api":"https://aosikazy.com/api.php/provide/vod/at/xml","datatype":"xml","search":false}
-    
+    {"title":"奥斯卡资源","api":"https://aosikazy.com/api.php/provide/vod/at/xml","datatype":"xml","search":false} 
 ]
