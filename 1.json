@@ -12,5 +12,9 @@
     {"title":"葡萄资源","api":"https://caiji.putaozy.net/inc/seacms.php","datatype":"xml","search":true},
     {"title":"老鸭资源","api":"https://laoyazy54.com/api.php/provide/vod/","datatype":"json","search":true},
     {"title":"滴滴资源","api":"https://api.ddapi.cc/api.php/provide/vod/at/xml","datatype":"xml","search":true},
+    {"title":"91md","api":"https://91md.me/api.php/provide/vod/from/mdm3u8/","datatype":"xml","search":true},
+    {"title":"1","api":"https://xjjzyapi.com/home/cjapi/askl/mc/vod/xml","datatype":"xml","search":true},
+    {"title":"2","api":"http://www.jializyzapi.com/api.php/provide/vod/","datatype":"xml","search":true},
     {"title":"奥斯卡资源","api":"https://aosikazy.com/api.php/provide/vod/at/xml","datatype":"xml","search":false}
+    
 ]
